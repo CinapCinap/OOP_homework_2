@@ -8,14 +8,16 @@ class Animal:
         self.ferm_list.append(self)
     def eat(self):
         print(f'{self.type} {self.name} - покормили, {self.voice}')
+    @classmethod
     def count_total_weight(cls):
         total_weight = 0
-        for animal in Animal.ferm_list:
+        for animal in cls.ferm_list:
             total_weight += animal.weight
         print(f'Общий вес всех животных - {total_weight} кг')
+    @classmethod
     def find_heaviest(cls):
         max_weight = 0
-        for animal in Animal.ferm_list:
+        for animal in cls.ferm_list:
             if animal.weight > max_weight:
                 max_weight = animal.weight
                 heaviest_animal = animal
@@ -57,8 +59,8 @@ def main():
     roga = Goat('Рога', 7)
     kopita = Goat('Копыта', 9)
     kryak = Duck('Кряква', 1)
-    Animal.count_total_weight(Animal)
-    Animal.find_heaviest(Animal)
+    Animal.count_total_weight()
+    Animal.find_heaviest()
     for animal in Animal.ferm_list:
         animal.eat()
         if isinstance(animal, Sheep):
